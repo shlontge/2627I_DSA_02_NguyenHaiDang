@@ -1,9 +1,0 @@
-Để xác định các cây, ta chỉ cần nhìn vào giá trị parent[i] của từng phần tử
-
-Cây 1 (gốc 0) parent[0] = 0 nghĩa là 0 tự trỏ vào chính nó nên 0 là gốc; các nút 1, 2, 3 đều có parent bằng 0 nên chúng là con của 0 (tổng cộng 4 nút).
-
-Cây 2 (gốc 4) parent[4] = 4 nên 4 là gốc; các nút 5, 6 trỏ vào 4, còn nút 7 trỏ vào 5 (tổng cộng 4 nút).
-
-Nút 9 parent[9] = 8 nghĩa là nút 9 đang trỏ vào nút 8, nên 9 chắc chắn là con của 8.
-
--> có thể nhận 0, 4 hoặc 8
