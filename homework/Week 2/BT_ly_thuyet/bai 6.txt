@@ -1,0 +1,1 @@
+bieu thuc mo ta dung la O(n sqr(n))

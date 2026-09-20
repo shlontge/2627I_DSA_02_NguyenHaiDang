@@ -1,0 +1,47 @@
+a. 
+   Code:
+   int sum = 0;
+   for (int n = N; n > 0; n /= 2)
+       for (int i = 0; i < n; i++) sum++;
+
+   Phân tích:
+   - Các giá trị của n lần lượt là: N, N/2, N/4, N/8, ..., 1.
+   - Vòng lặp bên trong thực thi đúng n lần cho mỗi giá trị của n.
+   - Tổng số lần thực hiện lệnh sum++:
+     S = N + N/2 + N/4 + N/8 + ... + 1
+     S = N * (1 + 1/2 + 1/4 + 1/8 + ...)
+     S < 2N.
+   - Bậc tăng (Order of Growth): ~ N (hoặc O(N) / linear).
+
+b. 
+   Code:
+   int sum = 0;
+   for (int i = 1; i < N; i *= 2)
+       for (int j = 0; j < i; j++) sum++;
+
+   Phân tích:
+   - Các giá trị của i lần lượt là các lũy thừa của 2: 1, 2, 4, 8, ..., cho đến giá trị 2^k < N.
+   - Vòng lặp bên trong thực thi đúng i lần.
+   - Tổng số lần thực hiện lệnh sum++:
+     S = 1 + 2 + 4 + 8 + ... + 2^k  (với 2^k < N)
+     S = 2^(k+1) - 1 < 2N.
+   - Bậc tăng (Order of Growth): ~ N (hoặc O(N) / linear).
+
+c. 
+   Code:
+   int sum = 0;
+   for (int i = 1; i < N; i *= 2)
+       for (int j = 0; j < N; j++) sum++;
+
+   Phân tích:
+   - Vòng lặp ngoài (i *= 2) lặp khoảng log2(N) lần (chuỗi: 1, 2, 4, 8, ..., < N).
+   - Vòng lặp trong (j < N) lặp đúng N lần đối với MỖI bước lặp của i.
+   - Tổng số lần thực hiện lệnh sum++:
+     S = N * log2(N).
+   - Bậc tăng (Order of Growth): ~ N log N (hoặc O(N log N) / linearithmic).
+
+--------------------------------------------------
+TỔNG KẾT BẬC TĂNG (ORDER OF GROWTH):
+a. N
+b. N
+c. N log N

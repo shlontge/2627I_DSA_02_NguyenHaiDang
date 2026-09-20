@@ -1,0 +1,24 @@
+Phân tích số lần in từ "hello":
+
+1. Vòng lặp ngoài cùng (biến i):
+   - i chạy từ 1 đến n (i = 1, 2, ..., n).
+
+2. Vòng lặp thứ hai (biến j):
+   - Với mỗi giá trị i, j chạy từ n xuống i (j = n, n-1, ..., i).
+   - Số lần lặp của vòng j ứng với i là: (n - i + 1).
+   - Tổng số lần lặp của cặp (i, j) là:
+     (n) + (n - 1) + ... + 1 = n*(n + 1)/2 ≈ (1/2)*n^2.
+
+3. Vòng lặp trong cùng (biến k):
+   - k bắt đầu từ 1, sau mỗi bước tăng thêm (n/100) cho đến khi k > n.
+   - Các giá trị của k là: 1, 1 + n/100, 1 + 2*(n/100), ..., 1 + 100*(n/100).
+   - Lưu ý: Giá trị cuối cùng 1 + 100*(n/100) = n + 1 > n, nên vòng lặp dừng ở bước thứ 100 (khi k = 1 + 99*(n/100) <= n).
+   - Do đó, vòng lặp k thực thi đúng 100 lần độc lập với i và j.
+
+4. Tổng số lần in từ "hello":
+   - Số lần in = [Tổng số lần lặp (i, j)] * [Số lần lặp k]
+   - Số lần in = [n*(n + 1)/2] * 100 = 50*n*(n + 1) = 50*n^2 + 50*n
+
+5. Dạng xấp xỉ (~):
+   - Khi n lớn, thành phần bậc cao nhất là 50*n^2.
+   - Do đó: ~ 50n^2

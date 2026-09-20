@@ -1,0 +1,1 @@
+bieu thuc O(n) va omega(n)

@@ -1,0 +1,50 @@
+1. Ý tưởng thuật toán:
+- Trong thuật toán tìm kiếm nhị phân thông thường, khi gặp `a[mid] == key`, hàm sẽ trả về ngay lập tức chỉ số `mid`. Điều này không đảm bảo `mid` là chỉ số nhỏ nhất nếu có nhiều phần tử trùng giá trị với `key`.
+- Nếu ta dùng tuyến tính lùi lại (vd: `while (mid > 0 && a[mid-1] == key) mid--;`) thì thời gian chạy trong trường hợp xấu nhất sẽ bị tăng lên O(N) (khi tất cả các phần tử đều bằng `key`).
+- Để duy trì thời gian O(log N):
+  + Khi gặp `a[mid] == key`, thay vì dùng return ngay, ta lưu lại vị trí `mid` đó vào biến kết quả `result`, sau đó tiếp tục thu hẹp không gian tìm kiếm sang NỬA BÊN TRÁI bằng cách đặt `hi = mid - 1`.
+  + Tiến trình này tiếp tục lặp cho đến khi `lo > hi` để chắc chắn tìm được xuất hiện đầu tiên.
+
+2. Code Java chi tiết:
+
+public class BinarySearchFirst {
+
+    // Trả về chỉ số nhỏ nhất của 'key' trong mảng 'a' đã sắp xếp.
+    // Trả về -1 nếu không tìm thấy key.
+    public static int rank(int key, int[] a) {
+        int lo = 0;
+        int hi = a.length - 1;
+        int result = -1; // Lưu vị trí nhỏ nhất tìm thấy
+
+        while (lo <= hi) {
+            int mid = lo + (hi - lo) / 2;
+
+            if (key < a[mid]) {
+                hi = mid - 1;
+            } else if (key > a[mid]) {
+                lo = mid + 1;
+            } else {
+                // Tìm thấy key!
+                result = mid; // Lưu lại chỉ số mid hiện tại
+                hi = mid - 1; // Tiếp tục tìm kiếm ở nửa bên trái
+            }
+        }
+
+        return result;
+    }
+
+    public static void main(String[] args) {
+        // Mảng mẫu đã sắp xếp có các phần tử trùng lặp
+        int[] a = {1, 2, 2, 2, 3, 4, 4, 5, 8, 8, 8, 8, 9};
+        int key = 2;
+
+        int index = rank(key, a);
+        System.out.println("Chi so nho nhat cua key " + key + " la: " + index);
+        // Kết quả mong đợi: index = 1 (mặc dù key 2 xuất hiện ở các vị trí 1, 2, 3)
+    }
+}
+
+3. Phân tích độ phức tạp:
+- Thời gian chạy: Ở mỗi bước lặp, không gian tìm kiếm giảm đi một nửa (`(hi - lo) / 2`).
+- Số lần lặp tối đa là log2(N) + 1.
+- Do đó, độ phức tạp thời gian luôn đảm bảo là O(log N) trong mọi trường hợp.

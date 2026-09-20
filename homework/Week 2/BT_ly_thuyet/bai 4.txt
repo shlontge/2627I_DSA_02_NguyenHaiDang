@@ -1,0 +1,28 @@
+Phân tích bộ nhớ (mô hình 64-bit Java):
+
+1. Bộ nhớ cho 1 nút (Node):
+- Object overhead: 16 bytes
+- Các tham chiếu (64-bit reference = 8 bytes/tham chiếu):
+  + key: 8 bytes
+  + value: 8 bytes
+  + parent: 8 bytes
+  + left: 8 bytes
+  + right: 8 bytes
+  + Tham chiếu ẩn đến lớp cha BST (non-static inner class): 8 bytes
+- Biến nguyên thủy:
+  + count (int): 4 bytes
+- Kích thước thô: 16 + (8 * 6) + 4 = 68 bytes
+- Padding (làm tròn lên bội số của 8): 72 bytes
+
+Với n phần tử (nút), tổng bộ nhớ cho các nút là 72n bytes.
+
+2. Bộ nhớ cho đối tượng BST:
+- Object overhead: 16 bytes
+- root (Node reference): 8 bytes
+- n (int): 4 bytes
+- Kích thước thô: 16 + 8 + 4 = 28 bytes
+- Padding (làm tròn lên bội số của 8): 32 bytes
+
+3. Tổng bộ nhớ:
+- Chi tiết: 72n + 32 bytes
+- Dạng xấp xỉ (~): ~72n bytes

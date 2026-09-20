@@ -1,0 +1,33 @@
+Quy tắc tilde (~): f(N) ~ g(N) khi và chỉ khi lim (N -> infinity) [f(N) / g(N)] = 1.
+
+a. N + 1
+   - Số hạng thống trị: N
+   - Kết quả: ~ N
+
+b. 1 + 1/N
+   - Khi N -> infinity, 1/N -> 0.
+   - Kết quả: ~ 1
+
+c. (1 + 1/N)(1 + 2/N)
+   - Khai triển: 1 + 3/N + 2/N^2
+   - Khi N -> infinity, các số hạng 3/N và 2/N^2 tiến tới 0.
+   - Kết quả: ~ 1
+
+d. 2N^3 - 15N^2 + N
+   - Số hạng có bậc cao nhất là 2N^3.
+   - Kết quả: ~ 2N^3
+
+e. lg(2N) / lg N
+   - Biến đổi: [lg 2 + lg N] / lg N = [1 + lg N] / lg N = 1/lg N + 1
+   - Khi N -> infinity, 1/lg N -> 0.
+   - Kết quả: ~ 1
+
+f. lg(N^2 + 1) / lg N
+   - Khi N đủ lớn, N^2 + 1 ~ N^2.
+   - Biến đổi: lg(N^2) / lg N = 2 * lg N / lg N = 2
+   - Kết quả: ~ 2
+
+g. N^100 / 2^N
+   - Hàm mũ (2^N) tăng trưởng nhanh hơn rất nhiều so với bất kỳ hàm đa thức nào (N^100).
+   - Tuy nhiên, trong phân tích thuật toán, đây là tỉ số thời gian/chi phí tiến dần về 0 khi N -> infinity.
+   - Kết quả: ~ 0 (hoặc N^100 / 2^N)

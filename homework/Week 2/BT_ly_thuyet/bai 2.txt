@@ -1,0 +1,1 @@
+ham duoc goi $$\sim \mathbf{\frac{1}{2} n^4 \log_2 n}$$ (lua chon thu 3)

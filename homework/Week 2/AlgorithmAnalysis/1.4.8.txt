@@ -1,0 +1,64 @@
+1. Phân tích thuật toán:
+- Thuật toán vét cạn (Brute-force): Sử dụng 2 vòng lặp lồng nhau kiểm tra mọi cặp (a[i] == a[j]).
+  + Độ phức tạp: O(N^2).
+  
+- Thuật toán tối ưu dùng Arrays.sort():
+  + Bước 1: Sắp xếp mảng tăng dần bằng Arrays.sort(). Phép sắp xếp mất O(N log N).
+  + Bước 2: Sau khi sắp xếp, các giá trị bằng nhau sẽ đứng liền kề nhau. Ta duyệt qua mảng để đếm độ dài của các nhóm giá trị giống nhau liên tiếp (run length).
+  + Bước 3: Nếu một giá trị xuất hiện k lần liên tiếp, số cặp bằng nhau tạo từ k phần tử này là C(k, 2) = k * (k - 1) / 2.
+  + Bước duyệt mảng chỉ mất O(N).
+  + Tổng độ phức tạp thời gian: O(N log N) + O(N) = O(N log N).
+
+2. Code Java chi tiết:
+
+import edu.princeton.cs.algs4.In;
+import edu.princeton.cs.algs4.StdOut;
+import java.util.Arrays;
+
+public class EqualPairs {
+
+    // Trả về số cặp số bằng nhau trong mảng a với thời gian O(N log N)
+    public static long countEqualPairs(int[] a) {
+        if (a == null || a.length < 2) return 0;
+
+        // 1. Sắp xếp mảng: O(N log N)
+        Arrays.sort(a);
+
+        long count = 0;
+        long runLength = 1; // Độ dài của dãy các số giống nhau liên tiếp
+
+        // 2. Duyệt qua mảng để đếm các dãy số bằng nhau: O(N)
+        for (int i = 1; i < a.length; i++) {
+            if (a[i] == a[i - 1]) {
+                runLength++;
+            } else {
+                // Tính số cặp C(k, 2) từ nhóm vừa kết thúc
+                count += runLength * (runLength - 1) / 2;
+                runLength = 1; // Khởi tạo lại cho nhóm mới
+            }
+        }
+
+        // Tính cho nhóm cuối cùng ở cuối mảng
+        count += runLength * (runLength - 1) / 2;
+
+        return count;
+    }
+
+    public static void main(String[] args) {
+        // Đọc dữ liệu từ file được truyền qua tham số dòng lệnh
+        In in = new In(args[0]);
+        int[] a = in.readAllInts();
+
+        long pairs = countEqualPairs(a);
+        StdOut.println("So cap so bang nhau: " + pairs);
+    }
+}
+
+3. Ví dụ minh họa:
+- Giả sử mảng đầu vào: [4, 1, 4, 2, 4, 1]
+- Sau khi Arrays.sort(): [1, 1, 2, 4, 4, 4]
+- Các nhóm giống nhau:
+  + Nhóm giá trị 1: xuất hiện k = 2 lần -> Số cặp = 2 * (2 - 1) / 2 = 1
+  + Nhóm giá trị 2: xuất hiện k = 1 lần -> Số cặp = 1 * (1 - 1) / 2 = 0
+  + Nhóm giá trị 4: xuất hiện k = 3 lần -> Số cặp = 3 * (3 - 1) / 2 = 3
+- Tổng số cặp = 1 + 0 + 3 = 4 cặp.

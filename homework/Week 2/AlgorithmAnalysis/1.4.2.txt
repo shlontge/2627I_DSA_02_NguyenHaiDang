@@ -1,0 +1,45 @@
+1. Nguyên nhân gây lỗi:
+Trong chương trình ThreeSum thông thường, điều kiện kiểm tra bộ ba phần tử (a[i], a[j], a[k]) có tổng bằng 0 là:
+    if (a[i] + a[j] + a[k] == 0)
+Khi các phần tử trong mảng có giá trị lớn (gần Integer.MAX_VALUE hoặc Integer.MIN_VALUE), phép cộng 3 số kiểu 'int' có thể gây ra hiện tượng tràn số (integer overflow / underflow), dẫn đến kết quả tính toán bị sai lệch.
+
+2. Giải pháp:
+Chuyển kiểu dữ liệu của các số hạng sang kiểu 'long' (64-bit integer) trước khi thực hiện phép cộng. Vì giới hạn của kiểu 'long' (-2^63 đến 2^63 - 1) lớn hơn rất nhiều so với tổng của 3 số 'int' (tối đa khoảng 3 * 2^31 ≈ 6.4 * 10^9), điều này đảm bảo phép tính không bao giờ bị tràn số.
+
+3. Code Java minh họa:
+
+public class ThreeSum {
+
+    // Trả về số lượng bộ ba có tổng bằng 0 (tránh tràn số)
+    public static int count(int[] a) {
+        int n = a.length;
+        int count = 0;
+        for (int i = 0; i < n; i++) {
+            for (int j = i + 1; j < n; j++) {
+                for (int k = j + 1; k < n; k++) {
+                    // Ép kiểu ít nhất một số hạng sang 'long' (hoặc dùng kiểu 'long' cho tổng)
+                    if ((long) a[i] + a[j] + a[k] == 0) {
+                        count++;
+                    }
+                }
+            }
+        }
+        return count;
+    }
+
+    public static void main(String[] args) {
+        // Ví dụ thử nghiệm với các số int lớn gây tràn số nếu cộng thông thường
+        int[] a = { Integer.MAX_VALUE, Integer.MAX_VALUE, -2 };
+        
+        // Nếu dùng (a[i] + a[j] + a[k]) kiểu int:
+        // Integer.MAX_VALUE + Integer.MAX_VALUE + (-2) = -4 (do tràn số) != 0 -> Sai!
+
+        // Dùng (long) a[i] + a[j] + a[k]:
+        // 2147483647L + 2147483647L + (-2) = 4294967292L != 0 -> Đúng!
+        
+        System.out.println("So bộ ba co tong bang 0: " + count(a));
+    }
+}
+
+4. Giải thích thêm (Cánh khác nếu dùng BigInteger / Math.addExact):
+- Cũng có thể dùng kiểu `long` cho toàn bộ mảng đầu vào hoặc chuyển đổi sang `BigInteger`, nhưng giải pháp ép kiểu `(long) a[i] + a[j] + a[k]` là tối ưu nhất về cả hiệu năng lẫn bộ nhớ.

@@ -1,0 +1,37 @@
+1. Mã nguồn thuật toán ThreeSum:
+   int count = 0;
+   for (int i = 0; i < N; i++)
+       for (int j = i + 1; j < N; j++)
+           for (int k = j + 1; k < N; k++)
+               if (a[i] + a[j] + a[k] == 0)
+                   count++;
+
+2. Số lần lặp của vòng lặp trong cùng:
+   - Số bộ ba phân biệt (i, j, k) với 0 <= i < j < k < N chính là số tổ hợp chập 3 của N phần tử:
+     C(N, 3) = N * (N - 1) * (N - 2) / 6
+             = (N^3 - 3N^2 + 2N) / 6
+             ~ (1/6) * N^3
+
+3. Phân tích mô hình chi phí:
+
+   a. Phép toán số học (Arithmetic Operations - Phép cộng '+'):
+      - Trong mỗi bước lặp của vòng trong cùng, câu lệnh (a[i] + a[j] + a[k]) thực hiện đúng 2 phép cộng:
+        + Phép cộng 1: a[i] + a[j]
+        + Phép cộng 2: (a[i] + a[j]) + a[k]
+      - Tổng số phép cộng số học = 2 * C(N, 3)
+                                 = 2 * [N * (N - 1) * (N - 2) / 6]
+                                 = N * (N - 1) * (N - 2) / 3
+                                 = (N^3 - 3N^2 + 2N) / 3
+                                 ~ (1/3) * N^3
+
+   b. Phép so sánh (Comparisons - Phép so sánh '=='):
+      - Trong mỗi bước lặp của vòng trong cùng, câu lệnh (tong == 0) thực hiện 1 phép so sánh.
+      - Tổng số phép so sánh = C(N, 3)
+                              = N * (N - 1) * (N - 2) / 6
+                              ~ (1/6) * N^3
+
+4. TỔNG KẾT:
+   - Số phép cộng (addition operations):  ~ (1/3) * N^3  (chính xác: N(N-1)(N-2)/3)
+   - Số phép so sánh (comparisons):       ~ (1/6) * N^3  (chính xác: N(N-1)(N-2)/6)
+   - Tổng số phép toán cốt lõi:           ~ (1/2) * N^3
+   - Bậc tăng của thời gian chạy:         ~ N^3 (hoặc O(N^3))

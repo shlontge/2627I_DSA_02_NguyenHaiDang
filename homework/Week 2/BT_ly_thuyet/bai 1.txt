@@ -1,0 +1,35 @@
+Cau 1:
+
+Tilde notation: ~ 1/2 * n
+
+Big-Theta: Theta(n)
+
+Cau 2:
+
+Tilde notation: ~ 3 * log2(n)
+
+Big-Theta: Theta(log n)
+
+Cau 3:
+
+Tilde notation: ~ 100 * n
+
+Big-Theta: Theta(n)
+
+Cau 4:
+
+Tilde notation: ~ sqrt(n) * log3(n)
+
+Big-Theta: Theta(sqrt(n) * log n)
+
+Cau 5:
+
+Tilde notation: ~ n * log2(n)
+
+Big-Theta: Theta(n * log n)
+
+Cau 6:
+
+Tilde notation: ~ 50 * n^3
+
+Big-Theta: Theta(n^3)

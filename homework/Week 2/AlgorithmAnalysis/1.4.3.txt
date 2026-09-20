@@ -1,0 +1,116 @@
+1. Phân tích yêu cầu:
+- Đo thời gian thực thi của thuật toán (ví dụ: ThreeSum) với kích thước N tăng gấp đôi sau mỗi vòng lặp (N = 250, 500, 1000, 2000, ...).
+- Vẽ đồ thị chuẩn (Standard Plot):
+  + Trục X: N
+  + Trục Y: Thời gian T(N) (tính bằng giây)
+- Vẽ đồ thị Log-Log (Log-Log Plot):
+  + Trục X: lg(N) = log2(N)
+  + Trục Y: lg(T(N)) = log2(T(N))
+- Tự động điều chỉnh tỷ lệ (Rescaling / Autoscale):
+  + Cập nhật giới hạn hệ tọa độ (setXscale, setYscale) linh hoạt theo giá trị tối đa của N và T(N) để đường biểu diễn phủ trọn khung hình.
+
+2. Code Java chi tiết:
+
+import edu.princeton.cs.algs4.StdDraw;
+import edu.princeton.cs.algs4.StdRandom;
+import edu.princeton.cs.algs4.Stopwatch;
+import edu.princeton.cs.algs4.ThreeSum;
+
+public class DoublingTestPlot {
+
+    // Hàm đo thời gian thực thi của ThreeSum với mảng ngẫu nhiên kích thước N
+    public static double timeTrial(int n) {
+        int MAX = 1000000;
+        int[] a = new int[n];
+        for (int i = 0; i < n; i++) {
+            a[i] = StdRandom.uniformInt(-MAX, MAX);
+        }
+        Stopwatch timer = new Stopwatch();
+        ThreeSum.count(a);
+        return timer.elapsedTime();
+    }
+
+    public static void main(String[] args) {
+        int maxN = 8000; // Giá trị N tối đa để thử nghiệm
+        
+        // Mảng lưu dữ liệu thu được
+        java.util.ArrayList<Integer> nList = new java.util.ArrayList<>();
+        java.util.ArrayList<Double> timeList = new java.util.ArrayList<>();
+
+        // Thu thập dữ liệu nghiệm thử
+        for (int n = 250; n <= maxN; n += n) {
+            double time = timeTrial(n);
+            nList.add(n);
+            timeList.add(time);
+            System.out.printf("%7d %7.1f\n", n, time);
+        }
+
+        int numPoints = nList.size();
+        double lastN = nList.get(numPoints - 1);
+        double lastTime = timeList.get(numPoints - 1);
+
+        // --- 1. VẼ ĐỒ THỊ CHUẨN (STANDARD PLOT: N vs Time) ---
+        StdDraw.setCanvasSize(500, 500);
+        StdDraw.setTitle("Standard Plot: N vs Time");
+        
+        // Điều chỉnh tỷ lệ sao cho chiếm phần lớn màn hình (thêm 10% lề)
+        StdDraw.setXscale(0, lastN * 1.1);
+        StdDraw.setYscale(0, lastTime * 1.1);
+        StdDraw.setPenRadius(0.015);
+        StdDraw.setPenColor(StdDraw.BOOK_RED);
+
+        for (int i = 0; i < numPoints; i++) {
+            double x = nList.get(i);
+            double y = timeList.get(i);
+            StdDraw.point(x, y);
+        }
+
+        StdDraw.setPenRadius(0.005);
+        StdDraw.setPenColor(StdDraw.BLACK);
+        for (int i = 0; i < numPoints - 1; i++) {
+            StdDraw.line(nList.get(i), timeList.get(i), nList.get(i + 1), timeList.get(i + 1));
+        }
+
+
+        // --- 2. VẼ ĐỒ THỊ LOG-LOG (LOG-LOG PLOT: lg(N) vs lg(Time)) ---
+        // Đợi 2 giây hoặc mở cửa sổ mới (ở đây cấu hình lại hệ tọa độ trên khung hình mới)
+        try { Thread.sleep(2000); } catch (InterruptedException e) {}
+
+        StdDraw.clear();
+        StdDraw.setTitle("Log-Log Plot: lg(N) vs lg(Time)");
+
+        double minLogN = Math.log(nList.get(0)) / Math.log(2);
+        double maxLogN = Math.log(lastN) / Math.log(2);
+        
+        // Tìm log(time) nhỏ nhất và lớn nhất (bỏ qua giá trị time <= 0 nếu có)
+        double minLogTime = Math.log(timeList.get(0) > 0 ? timeList.get(0) : 0.001) / Math.log(2);
+        double maxLogTime = Math.log(lastTime) / Math.log(2);
+
+        // Thiết lập hệ tọa độ cho đồ thị log-log
+        StdDraw.setXscale(minLogN - 0.5, maxLogN + 0.5);
+        StdDraw.setYscale(minLogTime - 1.0, maxLogTime + 1.0);
+
+        StdDraw.setPenRadius(0.015);
+        StdDraw.setPenColor(StdDraw.BOOK_BLUE);
+
+        for (int i = 0; i < numPoints; i++) {
+            double logX = Math.log(nList.get(i)) / Math.log(2);
+            double logY = Math.log(timeList.get(i) > 0 ? timeList.get(i) : 0.001) / Math.log(2);
+            StdDraw.point(logX, logY);
+        }
+
+        StdDraw.setPenRadius(0.005);
+        StdDraw.setPenColor(StdDraw.BLACK);
+        for (int i = 0; i < numPoints - 1; i++) {
+            double x1 = Math.log(nList.get(i)) / Math.log(2);
+            double y1 = Math.log(timeList.get(i) > 0 ? timeList.get(i) : 0.001) / Math.log(2);
+            double x2 = Math.log(nList.get(i + 1)) / Math.log(2);
+            double y2 = Math.log(timeList.get(i + 1) > 0 ? timeList.get(i + 1) : 0.001) / Math.log(2);
+            StdDraw.line(x1, y1, x2, y2);
+        }
+    }
+}
+
+3. Giải thích điểm chính:
+- Tự động căn chỉnh trục (Autoscaling): Sử dụng `lastN * 1.1` và `lastTime * 1.1` làm giới hạn lớn nhất cho `StdDraw.setXscale` và `StdDraw.setYscale` giúp đường đồ thị không bị tràn ra ngoài biên và chiếm gần trọn diện tích cửa sổ.
+- Chuyển đổi Logarit: Chuyển đổi tọa độ `(x, y)` sang `(log2(x), log2(y))` giúp đường cong bậc 3 ($T(N) \sim a N^3$) trở thành một đường thẳng trên đồ thị log-log với hệ số góc (slope) gần bằng 3.

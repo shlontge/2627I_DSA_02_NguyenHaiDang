@@ -1,0 +1,41 @@
+Gọi S(N) là số bộ ba phần tử chọn từ N phần tử phân biệt.
+Ta cần chứng minh S(N) = N(N - 1)(N - 2) / 6 với mọi số nguyên N >= 3 bằng quy nạp toán học.
+
+1. Cơ sở quy nạp (Base step):
+- Với N = 3:
+  + Chọn 3 phần tử từ tập 3 phần tử thì chỉ có duy nhất 1 cách chọn: S(3) = 1.
+  + Theo công thức: 3*(3 - 1)*(3 - 2) / 6 = 3 * 2 * 1 / 6 = 1.
+  -> Mệnh đề đúng với N = 3.
+
+2. Giả thiết quy nạp (Inductive hypothesis):
+- Giả sử mệnh đề đúng với N = k (k >= 3), tức là số bộ ba chọn từ k phần tử là:
+  S(k) = k*(k - 1)*(k - 2) / 6.
+
+3. Bước quy nạp (Inductive step):
+- Ta cần chứng minh mệnh đề đúng với N = k + 1, tức là:
+  S(k + 1) = (k + 1)*((k + 1) - 1)*((k + 1) - 2) / 6
+           = (k + 1)*k*(k - 1) / 6.
+
+- Phân tích việc chọn bộ 3 phần tử từ (k + 1) phần tử:
+  Xét tập gồm (k + 1) phần tử, giả sử ta phân tách ra 1 phần tử mới x và k phần tử còn lại.
+  Các bộ 3 phần tử chọn từ (k + 1) phần tử được chia làm 2 loại riêng biệt:
+  
+  + Loại 1: Bộ ba KHÔNG chứa phần tử x.
+    Số cách chọn chính là chọn 3 phần tử từ k phần tử còn lại, theo giả thiết quy nạp là S(k).
+    
+  + Loại 2: Bộ ba CÓ chứa phần tử x.
+    Vì đã chắc chắn có x, ta cần chọn thêm 2 phần tử nữa từ k phần tử còn lại.
+    Số cách chọn 2 phần tử từ k phần tử là: k*(k - 1) / 2.
+
+- Do đó, tổng số cách chọn là:
+  S(k + 1) = S(k) + k*(k - 1) / 2
+           = [k*(k - 1)*(k - 2) / 6] + [k*(k - 1) / 2]
+           = [k*(k - 1) / 2] * [ (k - 2)/3 + 1 ]
+           = [k*(k - 1) / 2] * [ (k - 2 + 3) / 3 ]
+           = [k*(k - 1) / 2] * [ (k + 1) / 3 ]
+           = (k + 1)*k*(k - 1) / 6.
+
+- Như vậy, mệnh đề đúng với N = k + 1.
+
+4. Kết luận:
+- Theo nguyên lý quy nạp toán học, số bộ ba phần tử chọn từ N phần tử luôn bằng N(N - 1)(N - 2) / 6 với mọi N >= 3 (ĐPCM).
