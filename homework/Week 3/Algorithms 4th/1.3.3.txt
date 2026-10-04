@@ -1,0 +1,17 @@
+Quy tắc: Các số được push lần lượt từ 0 đến 9. Do tính chất LIFO của Stack, nếu một số x đã được lấy ra, mọi số nhỏ hơn x còn nằm trong stack phải được pop theo thứ tự GIẢM DẦN.
+
+PHÂN TÍCH CÁC TRƯỜNG HỢP SAI:
+
+- b. 4 6 8 7 5 3 2 9 0 1
+  Sai ở đoạn "0 1": Sau khi pop 2, stack còn 0 và 1 (1 được push sau 0). Do đó 1 bắt buộc phải pop ra trước 0.
+
+- f. 0 4 6 5 3 8 1 7 2 9
+  Sai ở đoạn "1 7 2": Sau khi pop 3, các số còn trong stack là {1, 2}. Khi push 7 và 8 rồi pop 8, đỉnh stack hiện tại là 7, bên dưới là 2, dưới cùng là 1. Không thể pop 1 trước 7 và 2.
+
+- g. 1 4 7 9 8 6 5 3 0 2
+  Sai ở đoạn "0 2": Sau khi pop 3, hai số còn lại trong stack là 0 và 2 (2 vào sau 0). Do đó 2 phải ra trước 0.
+
+---
+KẾT LUẬN:
+Các chuỗi KHÔNG THỂ là output: b, f, g
+Các chuỗi HỢP LỆ: a, c, d, e, h

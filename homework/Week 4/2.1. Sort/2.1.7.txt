@@ -1,0 +1,4 @@
+2.1.7 Thuật toán nào chạy nhanh hơn cho mảng đã sắp xếp thứ tự ngược, selection sort hay insertion sort?
+
+- Thuật toán chạy nhanh hơn: **Selection sort**.
+- Giải thích: Đối với mảng đã sắp xếp ngược (giảm dần), thuật toán **selection sort** vẫn thực hiện số lần so sánh bậc hai $O(N^2)$ như mọi trường hợp khác (không thay đổi). Trong khi đó, **insertion sort** phải dịch chuyển từng phần tử về đầu mảng qua mỗi bước, đạt độ phức tạp thời gian xấu nhất $O(N^2)$ với số lượng phép gán và so sánh lớn hơn đáng kể (khoảng $\frac{N^2}{2}$ lần so sánh và dịch chuyển), khiến selection sort chạy nhanh hơn trên mảng sắp xếp ngược trong thực tế cài đặt cơ bản.

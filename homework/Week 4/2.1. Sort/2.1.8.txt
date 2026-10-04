@@ -1,0 +1,4 @@
+2.1.8 (*) Giả sử ta dùng thuật toán insertion sort đối với một mảng thứ tự ngẫu nhiên mà trong đó các phần tử chỉ nhận một trong 03 giá trị. Hỏi thời gian chạy sẽ là tuyến tính, bậc hai, hay cái gì đó ở giữa?
+
+- Thời gian chạy: **Tuyến tính** (hoặc $O(N)$).
+- Giải thích: Khi mảng chỉ chứa các phần tử nhận một trong 3 giá trị riêng biệt (ví dụ: các giá trị $A, B, C$), số lượng nghịch thế (inversions) tối đa mà mỗi phần tử có thể nhảy qua bị giới hạn chặt chẽ. Khi một phần tử mới được chèn vào đoạn đã sắp xếp, nó chỉ di chuyển qua các phần tử có giá trị lớn hơn nó. Vì chỉ có 3 giá trị phân biệt, khoảng cách mà một phần tử phải dịch chuyển ngược lại trong Insertion Sort bị chặn bởi số lượng các phần tử có giá trị lớn hơn nó (hoặc bằng hằng số tương đối với các nhóm giá trị). Do đó, tổng số lần dịch chuyển và so sánh chỉ là tuyến tính $O(N)$ đối với mảng có số lượng giá trị không đổi (hằng số nhỏ).

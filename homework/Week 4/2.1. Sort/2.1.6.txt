@@ -1,0 +1,4 @@
+2.1.6 Thuật toán nào chạy nhanh hơn đối với mảng gồm tất cả các key bằng nhau, selection sort hay insertion sort?
+
+- Thuật toán chạy nhanh hơn: **Insertion sort**.
+- Giải thích: Khi tất cả các key bằng nhau, thuật toán **insertion sort** sẽ chạy trong thời gian tuyến tính ($O(N)$), vì mỗi phần tử khi so sánh với phần tử đứng trước nó sẽ cho kết quả không nhỏ hơn (`false`), dẫn đến vòng lặp bên trong kết thúc ngay lập tức mà không cần dịch chuyển phần tử nào. Trong khi đó, **selection sort** vẫn phải quét toàn bộ các phần tử còn lại qua mọi vòng lặp để tìm giá trị min và thực hiện số bước so sánh là $O(N^2)$ không đổi.

@@ -1,0 +1,4 @@
+2.1.3 Cho ví dụ về một mảng N phần tử mà khi chạy thuật toán selection sort có số lần kiểm tra a[j] < a[min] ra false (và vì thế cập nhật giá trị min) là tối đa.
+
+- Ví dụ về mảng N phần tử: Một mảng được sắp xếp theo thứ tự giảm dần, ví dụ mảng 4 phần tử: `4, 3, 2, 1` (hoặc chuỗi giảm dần bất kỳ).
+- Giải thích: Khi mảng có thứ tự giảm dần, mỗi khi thuật toán duyệt qua phần tử tiếp theo `a[j]`, giá trị của nó luôn nhỏ hơn phần tử hiện tại đang giữ kỷ lục nhỏ nhất `a[min]`. Điều này làm cho điều kiện so sánh luôn đúng, khiến biến `min` liên tục bị cập nhật liên tục qua mỗi lần quét, đạt số lần cập nhật giá trị `min` tối đa trong suốt quá trình chạy thuật toán.

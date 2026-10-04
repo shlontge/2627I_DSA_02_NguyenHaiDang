@@ -1,0 +1,4 @@
+2.1.2 Trong thuật toán selection sort, một phần tử bất kì cần đến tối đa bao nhiêu lần đổi chỗ để được sắp xếp vào đúng chỗ? Một phần tử bất kì cần đến trung bình bao nhiêu lần đổi chỗ để được sắp xếp vào đúng chỗ?
+
+- Tối đa: 1 lần đổi chỗ. (Mỗi bước `i`, thuật toán chỉ thực hiện tối đa một phép đổi chỗ giữa phần tử ở vị trí `i` và phần tử nhỏ nhất tìm được ở vị trí `min`).
+- Trung bình: 1 lần đổi chỗ (hoặc $1$ lần với mỗi phần tử bị đổi chỗ trong các bước của thuật toán, vì mỗi vòng lặp từ 0 đến $N-1$ thực hiện nhiều nhất 1 lần swap cho vị trí hiện tại).

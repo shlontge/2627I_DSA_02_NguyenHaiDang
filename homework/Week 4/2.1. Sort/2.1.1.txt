@@ -1,0 +1,19 @@
+2.1.1 Trình bày cách sắp xếp chuỗi E A S Y Q U E S T I O N bằng thuật toán selection sort.
+
+Chuỗi ban đầu gồm 12 ký tự: E, A, S, Y, Q, U, E, S, T, I, O, N (tương ứng các chỉ số từ 0 đến 11).
+
+i   min  0  1  2  3  4  5  6  7  8  9  10 11
+         E  A  S  Y  Q  U  E  S  T  I  O  N
+0   1    A  E  S  Y  Q  U  E  S  T  I  O  N
+1   6    A  E  S  Y  Q  U  E  S  T  I  O  N
+2   6    A  E  E  Y  Q  U  S  S  T  I  O  N
+3   11   A  E  E  N  Q  U  S  S  T  I  O  Y
+4   9    A  E  E  N  I  U  S  S  T  Q  O  Y
+5   10   A  E  E  N  I  O  S  S  T  Q  U  Y
+6   9    A  E  E  N  I  O  Q  S  T  S  U  Y
+7   7    A  E  E  N  I  O  Q  S  T  S  U  Y
+8   9    A  E  E  N  I  O  Q  S  S  T  U  Y
+9   9    A  E  E  N  I  O  Q  S  S  T  U  Y
+10  10   A  E  E  N  I  O  Q  S  S  T  U  Y
+11  11   A  E  E  N  I  O  Q  S  S  T  U  Y
+         A  E  E  N  I  O  Q  S  S  T  U  Y

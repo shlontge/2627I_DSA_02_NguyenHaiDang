@@ -1,0 +1,18 @@
+2.1.4 Trình bày cách sắp xếp chuỗi E A S Y Q U E S T I O N bằng thuật toán insertion sort.
+
+Chuỗi ban đầu gồm 12 ký tự: E, A, S, Y, Q, U, E, S, T, I, O, N (tương ứng các chỉ số từ 0 đến 11).
+
+i   j   0  1  2  3  4  5  6  7  8  9  10 11
+        E  A  S  Y  Q  U  E  S  T  I  O  N
+1   0   A  E  S  Y  Q  U  E  S  T  I  O  N
+2   2   A  E  S  Y  Q  U  E  S  T  I  O  N
+3   3   A  E  S  Y  Q  U  E  S  T  I  O  N
+4   1   A  E  S  Y  Q  U  E  S  T  I  O  N
+5   5   A  E  E  S  Y  Q  U  S  T  I  O  N
+6   2   A  E  E  S  Y  Q  U  S  T  I  O  N
+7   2   A  E  E  S  S  Y  Q  U  T  I  O  N
+8   2   A  E  E  S  S  T  Y  Q  U  I  O  N
+9   2   A  E  E  I  S  S  T  Y  Q  U  O  N
+10  5   A  E  E  I  O  S  S  T  Y  Q  U  N
+11  3   A  E  E  N  I  O  S  S  T  Y  Q  U
+        A  E  E  N  I  O  Q  S  S  T  U  Y
