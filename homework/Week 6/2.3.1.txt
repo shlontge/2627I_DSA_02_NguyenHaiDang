@@ -1,0 +1,33 @@
+2.3.1 Trình bày trình tự hàm partition() phân hoạch mảng E A S Y Q U E S T I O N.
+
+Cho mảng a[] gồm 12 phần tử có chỉ số từ 0 đến 11:
+Chỉ số (index):   0  1  2  3  4  5  6  7  8  9 10 11
+Giá trị mảng:     E  A  S  Y  Q  U  E  S  T  I  O  N
+
+Phần tử chốt (pivot v) = a[lo] = a[0] = 'E'
+Con trỏ i bắt đầu tăng từ lo (0), con trỏ j bắt đầu giảm từ hi + 1 (12).
+
+---------------------------------------------------------------------------------------------------------
+Hành động (Action)           i   j   0  1  2  3  4  5  6  7  8  9 10 11   Ghi chú
+---------------------------------------------------------------------------------------------------------
+initial values               0  12   E  A  S  Y  Q  U  E  S  T  I  O  N   v = E
+
+scan left, scan right        2   6   E  A  S  Y  Q  U  E  S  T  I  O  N   i dừng tại a[2]='S' (>= E)
+                                                                        j dừng tại a[6]='E' (<= E)
+
+exchange                     2   6   E  A  E  Y  Q  U  S  S  T  I  O  N   Đổi chỗ a[2] ('S') và a[6] ('E')
+
+scan left, scan right        6   6   E  A  E  Y  Q  U  S  S  T  I  O  N   i tăng gặp a[6]='S' (>= E)
+                                                                        j giảm tới a[6]='S' (không < E)
+
+scan left, scan right        6   2   E  A  E  Y  Q  U  S  S  T  I  O  N   j giảm tiếp tới a[2]='E' (<= E)
+                                                                        i (6) >= j (2) -> Dừng quét!
+
+final exchange               6   2   E  A  E  Y  Q  U  S  S  T  I  O  N   Đổi chỗ a[lo] (a[0]='E') với a[j] (a[2]='E')
+
+result                           2   E  A  E  Y  Q  U  S  S  T  I  O  N   Vị trí phân hoạch cuối cùng: j = 2
+---------------------------------------------------------------------------------------------------------
+
+Mảng sau khi phân hoạch xong:
+a[] = E  A  E  Y  Q  U  S  S  T  I  O  N
+Chỉ số pivot cuối cùng: j = 2 (phần tử 'E' nằm ở chỉ số 2 đã ở đúng vị trí sắp xếp).

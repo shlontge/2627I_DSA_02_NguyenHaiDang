@@ -1,0 +1,23 @@
+2.3.4 Giả sử ta bỏ qua bước tráo ngẫu nhiên ban đầu. Hãy cho 6 mảng độ dài 10 mà quicksort sẽ dùng số phép so sánh nhiều nhất (worst-case của thời gian chạy nếu tính theo số phép so sánh).
+
+Trả lời:
+- Khi bỏ qua bước tráo ngẫu nhiên và thuật toán chọn phần tử chốt (pivot) luôn là phần tử đầu tiên của mảng (`a[lo]`), trường hợp xấu nhất (worst-case) xảy ra khi mảng đã được sắp xếp tăng dần hoặc giảm dần.
+- Với độ dài N = 10, ta có thể đưa ra 6 mảng ở trạng thái xấu nhất (ví dụ: mảng đã sắp xếp tăng dần từ 1 đến 10, hoặc các biến thể của nó):
+
+1. Mảng 1 (Sắp xếp tăng dần đơn giản):
+   1 2 3 4 5 6 7 8 9 10
+
+2. Mảng 2 (Sắp xếp tăng dần với các giá trị khác):
+   10 20 30 40 50 60 70 80 90 100
+
+3. Mảng 3 (Sắp xếp tăng dần theo các chữ cái):
+   A B C D E F G H I J
+
+4. Mảng 4 (Sắp xếp tăng dần từ nhỏ đến lớn lặp lại hoặc chẵn):
+   2 4 6 8 10 12 14 16 18 20
+
+5. Mảng 5 (Mảng tăng dần số lẻ):
+   1 3 5 7 9 11 13 15 17 19
+
+6. Mảng 6 (Mảng tăng dần lùi từ lớn về nhỏ - trường hợp mảng sắp xếp giảm dần cũng gây ra độ phức tạp worst-case O(N^2) tương tự):
+   10 9 8 7 6 5 4 3 2 1

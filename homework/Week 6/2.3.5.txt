@@ -1,0 +1,73 @@
+2.3.5 Hãy viết thuật toán sắp xếp một mảng được biết trước là các phần tử chỉ có một trong 2 giá trị.
+
+Dưới đây là lời giải chi tiết và mã nguồn Java (sử dụng kỹ thuật hai con trỏ / 2-pointer) để sắp xếp mảng trong độ phức tạp O(N) thời gian và O(1) bộ nhớ:
+
+---------------------------------------------------------------------------------------------------------
+1. Ý tưởng thuật toán:
+- Sử dụng hai con trỏ:
+  + con trỏ `left` bắt đầu từ đầu mảng (chỉ số 0).
+  + con trỏ `right` bắt đầu từ cuối mảng (chỉ số a.length - 1).
+- Tìm giá trị nhỏ hơn trong 2 giá trị (giả sử là `val1 < val2`).
+- Duyệt hai con trỏ dịch chuyển về phía nhau:
+  + Nếu `a[left] == val1`, nó đã nằm đúng vị trí bên trái, tăng `left++`.
+  + Nếu `a[right] == val2`, nó đã nằm đúng vị trí bên phải, giảm `right--`.
+  + Nếu `a[left] == val2` và `a[right] == val1`, hoán đổi (swap) hai phần tử này, sau đó tăng `left++` và giảm `right--`.
+
+---------------------------------------------------------------------------------------------------------
+2. Mã nguồn (Java):
+
+public class TwoValueSort {
+
+    public static void sortTwoValues(Comparable[] a) {
+        if (a == null || a.length <= 1) return;
+
+        // BƯỚC 1: Xác định 2 giá trị phân biệt trong mảng
+        Comparable val1 = a[0];
+        Comparable val2 = null;
+        for (int i = 1; i < a.length; i++) {
+            if (!a[i].equals(val1)) {
+                val2 = a[i];
+                break;
+            }
+        }
+
+        // Nếu tất cả các phần tử trong mảng đều bằng nhau
+        if (val2 == null) return;
+
+        // Đảm bảo val1 < val2
+        if (val1.compareTo(val2) > 0) {
+            Comparable temp = val1;
+            val1 = val2;
+            val2 = temp;
+        }
+
+        // BƯỚC 2: Thuật toán 2 con trỏ phân hoạch mảng
+        int left = 0;
+        int right = a.length - 1;
+
+        while (left < right) {
+            while (left < right && a[left].equals(val1)) {
+                left++;
+            }
+            while (left < right && a[right].equals(val2)) {
+                right--;
+            }
+            if (left < right) {
+                exch(a, left, right);
+                left++;
+                right--;
+            }
+        }
+    }
+
+    private static void exch(Comparable[] a, int i, int j) {
+        Comparable temp = a[i];
+        a[i] = a[j];
+        a[j] = temp;
+    }
+}
+
+---------------------------------------------------------------------------------------------------------
+3. Đánh giá độ phức tạp:
+- Độ phức tạp thời gian (Time Complexity): O(N) — mỗi phần tử được duyệt qua tối đa 1 lần.
+- Độ phức tạp bộ nhớ (Space Complexity): O(1) — sắp xếp tại chỗ (in-place), không tốn thêm bộ nhớ ngoài.

@@ -1,0 +1,6 @@
+2.3.3 (*) Khi chạy quicksort cho một mảng độ dài N, phần tử lớn nhất có thể bị đổi chỗ tối đa bao nhiêu lần?
+
+Trả lời:
+- Trong trường hợp xấu nhất (worst-case, chẳng hạn khi chiều sâu cây đệ quy đạt đến N do không tráo ngẫu nhiên mảng ban đầu), phần tử lớn nhất có thể tham gia vào các bước phân hoạch ở từng tầng của cây đệ quy.
+- Ở mỗi tầng phân hoạch chứa nó, phần tử này có thể bị đổi chỗ (exchange) tối đa 1 lần.
+- Do đó, số lần phần tử lớn nhất có thể bị đổi chỗ tối đa là: **N** lần (hoặc **N - 1** lần).
